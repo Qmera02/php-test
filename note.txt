@@ -1,0 +1,3 @@
+[local]
+DB  = this
+user = root
