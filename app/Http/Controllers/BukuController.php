@@ -30,7 +30,13 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'judul'=>'required|min:3',
+            'pengarang'=>'required|min:3',
+            'tahun_terbit'=>'required|min:4'
+        ]);
+        Buku::create($validated);
+        return redirect()->route('buku.index')->with('success','Buku Berhasil Ditambahkan');
     }
 
     /**

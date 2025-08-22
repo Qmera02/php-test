@@ -28,7 +28,24 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Daftar Buku</h1>
-
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissable fade-show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label="Close"></button>
+            </div>
+        @endif
+        {{-- error message --}}
+        @if ($errors->any())
+             <div class="alert alert-danger" role="alert">
+                <ul class='mb-0'>
+                    @foreach ( $errors->all() as $item)
+                        <li> {{ $item }} </li>    
+                    @endforeach
+                </ul>
+               
+            </div>
+        @endif
+            
         <!-- Tabel Data Buku -->
         <div class="table-responsive">
             <table class="table table-striped table-hover">
@@ -67,7 +84,8 @@
         <!-- Form Tambah Data (opsional) -->
         <div class="mt-4 p-3 bg-light rounded">
             <h3>Tambah Buku Baru</h3>
-            <form action="" method="post">
+            <form action=" {{ route('buku.store') }} " method="post">
+                @csrf
                 <div class="mb-3">
                     <label for="judul" class="form-label">Judul Buku</label>
                     <input type="text" class="form-control" id="judul" name="judul" required>

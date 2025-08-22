@@ -15,4 +15,6 @@ Route::get('/folder' ,function() {
 });
 Route::get('/testcontroller' ,[UserController::class,'index'] );
 
-Route::get('/buku',[BukuController::class , 'index']);
+Route::get('/buku',[BukuController::class , 'index'])->name('buku.index');
+
+Route::post('/buku',[BukuController::class ,'store'])->name('buku.store');
