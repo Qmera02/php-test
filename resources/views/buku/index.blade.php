@@ -61,7 +61,7 @@
                 <tbody>
                     @foreach ($buku as $item)
                          <tr>
-                        <td> {{ $item -> id }} </td>
+                        <td> {{ $loop -> iteration }} </td>
                         <td> {{ $item -> judul }} </td>
                         <td> {{ $item -> pengarang }} </td>
                         <td> {{ $item -> tahun_terbit}}</td>
@@ -71,9 +71,13 @@
                                 <i class="fas fa-edit"></i> Edit
                                 </a>
                             </button>
-                            <button class="btn btn-sm btn-danger">
+                            <form action = "{{ route('buku.delete',['id'=>$item->id]) }}" method="post" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash-alt"></i> Hapus
-                            </button>
+                                </button>
+                            </form>
                         </td>
                     </tr>
 
